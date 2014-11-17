@@ -49,3 +49,8 @@
 <p align="justify">
     @Model.Description
 </p>
+<p align="right">
+    @(Model.AddedBy != null ? string.Format("Добавлено пользователем: {0} {1}, {2} {3}", Model.AddedBy.FirstName, Model.AddedBy.SecondName,Model.Added.ToLongTimeString(), Model.Added.ToLongDateString()) : "")
+    <br />
+    @(Model.EditedBy != null ? string.Format("Отредактировано: {0} {1}, {2} {3}", Model.EditedBy.FirstName, Model.EditedBy.SecondName, Model.Edited.ToLongTimeString(), Model.Edited.ToLongDateString()) : "")
+</p>
