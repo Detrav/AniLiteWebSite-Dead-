@@ -15,11 +15,14 @@ namespace AniLiteWebSite.Migrations
 
         protected override void Seed(AniLiteWebSite.Core.DataBase.AniLiteDBContext context)
         {
-            context.UserRoles.Add(new UserRole { Name = "Гость", Level = 0, Added = DateTime.Now, Edited = DateTime.MinValue });
-            context.UserRoles.Add(new UserRole { Name = "Пользователь", Level = 100, Added = DateTime.Now, Edited = DateTime.MinValue });
-            context.UserRoles.Add(new UserRole { Name = "Модератор", Level = 200, Added = DateTime.Now, Edited = DateTime.MinValue });
-            context.UserRoles.Add(new UserRole { Name = "Администратор", Level = 500, Added = DateTime.Now, Edited = DateTime.MinValue });
-            context.UserRoles.Add(new UserRole { Name = "Супер Администратор", Level = 1000, Added = DateTime.Now, Edited = DateTime.MinValue });
+            if (context.UserRoles.Count() == 0)
+            {
+                context.UserRoles.AddOrUpdate(new UserRole { Name = "Гость", Level = 0, Added = DateTime.Now, Edited = DateTime.MinValue });
+                context.UserRoles.AddOrUpdate(new UserRole { Name = "Пользователь", Level = 100, Added = DateTime.Now, Edited = DateTime.MinValue });
+                context.UserRoles.AddOrUpdate(new UserRole { Name = "Модератор", Level = 200, Added = DateTime.Now, Edited = DateTime.MinValue });
+                context.UserRoles.AddOrUpdate(new UserRole { Name = "Администратор", Level = 500, Added = DateTime.Now, Edited = DateTime.MinValue });
+                context.UserRoles.AddOrUpdate(new UserRole { Name = "Супер Администратор", Level = 1000, Added = DateTime.Now, Edited = DateTime.MinValue });
+            }
 
             //  This method will be called after migrating to the latest version.
 
