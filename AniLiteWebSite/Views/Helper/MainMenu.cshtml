@@ -1,0 +1,11 @@
+﻿@{
+    Layout = null;
+}
+
+<li class="@(  ViewData["PController"].ToString().ToLower().Equals("product") ? "dropdown active" : "dropdown")">
+    @Html.ActionLink("База данных", "Index", "Product")
+</li>
+
+<li class="@(  ViewData["PController"].ToString().ToLower().Equals("tracker") ? "dropdown active" : "dropdown")">
+    @Html.ActionLink("Обратная связь", "Index", "Tracker")
+</li>

@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AniLite - @ViewBag.Title - Anime Light DataBase </title>
+    <link href="~/Content/Images/icon/save-2.png" rel="shortcut icon">
+    <link href="~/Content/Css/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <a href="@Url.Action("Index", "Home")" class="brand"><span class='glyphicon glyphicon-floppy-saved'></span>Anime Light DataBase</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    @{Html.RenderAction("MainMenu", "Helper");}
+                    @{Html.RenderAction("AuthWidget", "Helper");}
+
+                    <li>
+                        <form class="navbar-form navbar-left" role="search">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Название произведения">
+                            </div>
+                            <button type="submit" class="btn btn-warning">Поиск</button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container body-content">
+        @RenderBody()
+
+    </div>
+    <hr />
+    <footer class="container">
+        <div class="row">
+            <div class="col-md-1">
+                <p align="center">
+                    <img width="64" height="64" src="~/Content/Images/svg/NewPegi_18.svg" />
+                </p>
+            </div>
+
+            <div class="col-md-11">
+                <p align="justify">
+                    Внимание сайт содержит материалы для взрослых.
+                    Все материалы (ресурсы, информация) на этом сайте взяты из открытых источников или присланы посетителями сайта.
+                    Материалы используются в некоммерческих целях.
+                    Все права на материалы принадлежат их авторам.
+                    Администрация сайта не несёт ответственности за материал и его любое использование.
+                    Если какой-нибудь из материалов нарушает ваши авторские права, то просим вас незамедлительно связаться с нами и мы удалим этот материал с данного сайта!
+                </p>
+            </div>
+            <div class="col-md-12">
+                <p align="center">&copy; 2014 - @DateTime.Now.Year - Anime Lite DataBase</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="~/Content/Scripts/jquery-2.1.1.min.js"></script>
+    <script src="~/Content/Scripts/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+﻿@model AniLiteWebSite.Core.DataBase.Model.User
+
+@{
+    Layout = null;
+}
+
+@if (Model == null)
+{
+    <li>
+        <div class="navbar-form">
+            <a href="@ViewData["AuthURI"].ToString()" class="btn btn-danger">Вход через Google</a>
+        </div>
+    </li>
+}else{
+    <li>
+        <div class="navbar-form">
+            <a style="padding: 0px 12px !important;" 
+               href="@Url.Action("Index", "Profile")" 
+               class="@(ViewData["PController"].ToString().ToLower().Equals("profile") ? "btn btn-info" : "btn btn-success")">
+                @if (Model.AvatarURI.IsEmpty())
+                {
+                    <img height="32" src="http://forums.imore.com/avatars/vb_im/avatar153128_1.gif" class="img-circle" />
+                    @(Model.FirstName + " " + Model.SecondName)
+                }
+                else
+                {
+                    <img height="32" src="@Model.AvatarURI" class="img-circle" />
+                    @(Model.FirstName + " " + Model.SecondName)
+                }
+            </a>
+        </div>
+    </li>
+    <li>
+        <div class="navbar-form">
+            @Html.ActionLink("Выйти", "Logout", "Helper", new { @class = "btn btn-danger" })
+        </div>
+    </li>
+}
