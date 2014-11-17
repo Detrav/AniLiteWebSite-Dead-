@@ -1,7 +1,68 @@
-﻿@model IEnumerable<AniLiteWebSite.Core.DataBase.Model.Product>
+﻿@model IEnumerable<AniLiteWebSite.Models.ProductPlusViewed>
 
 @{
     ViewBag.Title = "База данных";
 }
 
 <h2>@ViewBag.Title</h2>
+
+
+<div class="row">
+    <div class="col-md-2">
+        Фильтры базы:
+    </div>
+    <div class="col-md-2">
+
+    </div>
+</div>
+<hr />
+<table class="table table-striped">
+    <tr>
+        <td width="81" class="table-td-middle">Обложка</td>
+        <td>Название</td>
+        <td style="min-width:160px;" class="table-td-middle">Инструменты</td>
+    </tr>
+    @foreach (var item in @Model)
+    {
+        <tr>
+            <td width="81" class="table-td-middle">
+                <a href="@Url.Action("Details", new { id = @item.Product.Id })">
+                    <img src="@item.Product.AvatarURI" style="max-height:64px;max-width:64px" />
+                </a>
+            </td>
+            <td> <b>[@item.Product.Begin.Year]  @item.Product.Name</b>, @item.Product.FullName.Replace(Environment.NewLine, ", ")</td>
+
+            <td class="table-td-middle">
+                <div class="row">
+                    <div class="col-md-3">
+                        <a href="@item.Product.FromURI">Внешний источник</a>
+                    </div>
+                    <div class="col-md-3">
+                        @if(item.Viewed == null)
+                        { 
+                        <font size="5" color="red"> 0/@item.Product.NumberofEpisode </font>
+                        }
+                        else
+                        {
+                            if (item.Viewed.End)
+                            {
+                                <font size="5" color="green"> @item.Product.NumberofEpisode/@item.Product.NumberofEpisode </font>
+                            }
+                            else
+                            {
+                                <font size="5" color="blue"> 0/@item.Product.NumberofEpisode </font>
+                            }
+
+                        }
+                    </div>
+                    <div class="col-md-6">
+                        <a href="#" class="btn btn-danger btn-lg"><span class="glyphicon glyphicon-minus"></span></a>
+                        <a href="@Url.Action("Details", new { id = @item.Product.Id })" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-info-sign"></span></a>
+                        <a href="#" class="btn btn-success btn-lg"> <span class="glyphicon glyphicon-plus"></span></a>
+                    </div>
+                </div>
+            </td>
+
+        </tr>
+    }
+</table>

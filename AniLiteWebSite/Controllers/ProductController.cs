@@ -1,5 +1,6 @@
 ﻿using AniLiteWebSite.Core;
 using AniLiteWebSite.Core.DataBase.Model;
+using AniLiteWebSite.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,9 +16,14 @@ namespace AniLiteWebSite.Controllers
 
         public ActionResult Index(int from = 0,int size = 10)
         {
-            IEnumerable<Product> products = sqlRepository.getProductrs(from, size);
-
-            return View(products);
+            IEnumerable<Product> products = sqlRepository.getProducts(from, size);
+            var model = new List<ProductPlusViewed>();
+            foreach (var product in products)
+            {
+                var viewed = sqlRepository.getViewedByProductAndUser(product, User);
+                model.Add(new ProductPlusViewed { Product = product, Viewed = viewed });
+            }
+            return View( model);
         }
 
         [HttpGet]

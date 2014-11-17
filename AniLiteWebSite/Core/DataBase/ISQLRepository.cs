@@ -20,6 +20,9 @@ namespace AniLiteWebSite.Core.DataBase
 
         #region Product
         bool AddProduct(Product product);
+        IEnumerable<Product> getProducts(int from, int size);
         #endregion Product
+
+        ViewedProduct getViewedByProductAndUser(Product product, User user);
     }
 }

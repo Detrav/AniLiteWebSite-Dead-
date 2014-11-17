@@ -15,5 +15,15 @@ namespace AniLiteWebSite.Core.DataBase
             Db.SaveChanges();
             return true;
         }
+
+        public IEnumerable<Product> getProducts(int from, int size)
+        {
+            try
+            {
+                return Db.Products.OrderBy(u => u.Id).Skip(from).Take(size).ToList();
+            }
+            catch { return new List<Product>(); }
+            
+        }
     }
 }

@@ -160,11 +160,13 @@
     <Compile Include="Core\DataBase\MySQLRepository\Product.cs" />
     <Compile Include="Core\DataBase\MySQLRepository\User.cs" />
     <Compile Include="Core\DataBase\MySQLRepository\UserRole.cs" />
+    <Compile Include="Core\DataBase\MySQLRepository\ViewedProduct.cs" />
     <Compile Include="Core\MyController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\ProductPlusViewed.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -210,7 +212,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">
