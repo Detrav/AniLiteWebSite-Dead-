@@ -206,6 +206,7 @@
     <Content Include="Views\Web.config" />
     <Content Include="Content\Scripts\jquery-2.1.1.min.map" />
     <Content Include="Views\Product\Add.cshtml" />
+    <Content Include="Views\Product\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -13,9 +13,11 @@ namespace AniLiteWebSite.Controllers
         //
         // GET: /Product/
 
-        public ActionResult Index()
+        public ActionResult Index(int from = 0,int size = 10)
         {
-            return View();
+            IEnumerable<Product> products = sqlRepository.getProductrs(from, size);
+
+            return View(products);
         }
 
         [HttpGet]
