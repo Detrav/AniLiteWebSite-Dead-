@@ -58,7 +58,9 @@ namespace AniLiteWebSite.Controllers
 
         public ActionResult Details(int id)
         {
-            return View();
+            var product = sqlRepository.GetProductById(id);
+            if (product == null) return RedirectToAction("Error", "Error");
+            return View(product);
         }
 
     }

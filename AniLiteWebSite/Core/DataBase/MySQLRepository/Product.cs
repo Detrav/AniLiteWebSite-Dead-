@@ -8,12 +8,19 @@ namespace AniLiteWebSite.Core.DataBase
 {
     public partial class MySQLRepository : ISQLRepository
     {
+
         public bool AddProduct(Product product)
         {
             if (product.Id != 0) return false;
             Db.Products.Add(product);
             Db.SaveChanges();
             return true;
+        }
+
+        public Product GetProductById(int id)
+        {
+            try { return Db.Products.Find(id); }
+            catch{ return null;}
         }
 
         public IEnumerable<Product> getProducts(int from, int size)
