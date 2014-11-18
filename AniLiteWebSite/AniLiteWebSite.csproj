@@ -152,6 +152,7 @@
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Core\DataBase\AniLiteDBContext.cs" />
     <Compile Include="Core\DataBase\ISQLRepository.cs" />
+    <Compile Include="Core\DataBase\Model\MetaProduct.cs" />
     <Compile Include="Core\DataBase\Model\Product.cs" />
     <Compile Include="Core\DataBase\Model\Story.cs" />
     <Compile Include="Core\DataBase\Model\User.cs" />

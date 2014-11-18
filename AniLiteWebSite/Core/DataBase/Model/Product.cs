@@ -12,6 +12,7 @@ namespace AniLiteWebSite.Core.DataBase.Model
         public Product()
         {
             this.Viewed = new List<ViewedProduct>();
+            this.MetaData = new List<MetaProduct>();
         }
 
         // Значения
@@ -19,32 +20,27 @@ namespace AniLiteWebSite.Core.DataBase.Model
         [DisplayName("#")]
         [Key]
         public int Id { get; set; }
+
         [DisplayName("Название")]
         [Required]
         [MaxLength(100)]
         public string Name { get; set; }
-        [DisplayName("Название на других языках")]
-        [MaxLength(1000)]
-        public string FullName { get; set; }
+
         [DisplayName("Описание")]
         [MaxLength(4000)]
         public string Description { get; set; }
-        [DisplayName("Начало трансляции")]
-        public DateTime Begin { get; set; }
-        [DisplayName("Закончилось?")]
-        public bool Ended { get; set; }
-        [DisplayName("Конец трансляции")]
-        public DateTime End { get; set; }
-        [DisplayName("Количество эпизодов")]
-        public int NumberofEpisode { get; set; }
+
         [DisplayName("Рейтинг")]
         public float Rate { get; set; }
+
         [DisplayName("Постер")]
         [MaxLength(250)]
         public string AvatarURI { get; set; }
+
         [DisplayName("Ссылка на информацию")]
         [MaxLength(250)]
         public string FromURI { get; set; }
+
         [DisplayName("Утверждено?")]
         public bool Confirmed { get; set; }
 
@@ -52,5 +48,6 @@ namespace AniLiteWebSite.Core.DataBase.Model
 
         public virtual ICollection<ViewedProduct> Viewed { get; set; }
         public virtual User Who { get; set; }
+        public virtual ICollection<MetaProduct> MetaData { get; set; }
     }
 }
