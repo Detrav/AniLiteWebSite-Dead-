@@ -37,10 +37,6 @@ namespace AniLiteWebSite.Core.DataBase.Model
         [MaxLength(250)]
         public string AvatarURI { get; set; }
 
-        [DisplayName("Ссылка на информацию")]
-        [MaxLength(250)]
-        public string FromURI { get; set; }
-
         [DisplayName("Утверждено?")]
         public bool Confirmed { get; set; }
 

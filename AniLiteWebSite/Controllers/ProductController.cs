@@ -16,14 +16,8 @@ namespace AniLiteWebSite.Controllers
 
         public ActionResult Index(int from = 0,int size = 10)
         {
-            IEnumerable<Product> products = sqlRepository.getProducts(from, size);
-            var model = new List<ProductPlusViewed>();
-            foreach (var product in products)
-            {
-                var viewed = sqlRepository.getViewedByProductAndUser(product, User);
-                model.Add(new ProductPlusViewed { Product = product, Viewed = viewed });
-            }
-            return View( model);
+            IEnumerable<ProductSimple> products = sqlRepository.GetProductSimples(from, size,User);
+            return View(products);
         }
 
         [HttpGet]

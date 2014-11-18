@@ -1,4 +1,4 @@
-﻿@model IEnumerable<AniLiteWebSite.Models.ProductPlusViewed>
+﻿@model IEnumerable<AniLiteWebSite.Models.ProductSimple>
 
 @{
     ViewBag.Title = "База данных";
@@ -26,38 +26,43 @@
     {
         <tr>
             <td width="81" class="table-td-middle">
-                <a href="@Url.Action("Details", new { id = @item.Product.Id })">
-                    <img src="@item.Product.AvatarURI" style="max-height:64px;max-width:64px" />
+                <a href="@Url.Action("Details", new { id = @item.id })">
+                    <img src="@item.AvatarURI64" style="max-height:64px;max-width:64px" />
                 </a>
             </td>
-            <td> <b>[@item.Product.Begin.Year]  @item.Product.Name</b>, @item.Product.FullName.Replace(Environment.NewLine, ", ")</td>
+            <td> <b>[@item.Year]  @item.Names.First();</b>
+            @foreach( var it in item.Names.Skip(1))
+            {
+                @(","+it)
+            }
+            </td>
 
             <td class="table-td-middle">
                 <div class="row">
                     <div class="col-md-3">
-                        <a href="@item.Product.FromURI">Внешний источник</a>
+                        <a href="@item.FromURI">Внешний источник</a>
                     </div>
                     <div class="col-md-3">
-                        @if(item.Viewed == null)
+                        @if(!item.Viewed)
                         { 
-                        <font size="5" color="red"> 0/@item.Product.NumberofEpisode </font>
+                        <font size="5" color="red"> @item.NumOfEpisode </font>
                         }
                         else
                         {
-                            if (item.Viewed.End)
+                            if (item.ViewedEnd)
                             {
-                                <font size="5" color="green"> @item.Product.NumberofEpisode/@item.Product.NumberofEpisode </font>
+                                <font size="5" color="green"> @item.NumCurrent/@item.NumOfEpisode </font>
                             }
                             else
                             {
-                                <font size="5" color="blue"> 0/@item.Product.NumberofEpisode </font>
+                                <font size="5" color="blue"> @item.NumCurrent/@item.NumOfEpisode </font>
                             }
 
                         }
                     </div>
                     <div class="col-md-6">
                         <a href="#" class="btn btn-danger btn-lg"><span class="glyphicon glyphicon-minus"></span></a>
-                        <a href="@Url.Action("Details", new { id = @item.Product.Id })" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-info-sign"></span></a>
+                        <a href="@Url.Action("Details", new { id = @item.id })" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-info-sign"></span></a>
                         <a href="#" class="btn btn-success btn-lg"> <span class="glyphicon glyphicon-plus"></span></a>
                     </div>
                 </div>

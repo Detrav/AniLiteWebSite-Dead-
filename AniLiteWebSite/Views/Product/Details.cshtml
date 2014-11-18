@@ -10,17 +10,17 @@
     <div class="col-md-3" ><img style="max-height:320px;max-width:240px;" src="@Model.AvatarURI" /></div>
     <div class="col-md-9">
         <p>
-            <font size="3"><b>@Model.Name [@Model.Begin.Year]</b></font>
-            <font size="2"><br /> @Model.FullName.Replace(Environment.NewLine,", ")</font>
+            <font size="3"><b>@Model.Name [0000]</b></font>
+            <font size="2"><br /> FullName</font>
         </p>
         <p>
-            Трансляция с @Model.Begin.ToShortDateString() @(@Model.Ended ? "по " +  Model.End.ToShortDateString() : "")
+            Трансляция с 00.00.0000 по 00.00.0000
         </p>
         <p>
             Рейтинг: @Model.Rate.ToString("F2")
         </p>
         <p>
-            <a href="@Model.FromURI">Внешний источник</a>
+            <a href="">Внешний источник</a>
         </p>
         
         
@@ -48,9 +48,4 @@
 <hr />
 <p align="justify">
     @Model.Description
-</p>
-<p align="right">
-    @(Model.AddedBy != null ? string.Format("Добавлено пользователем: {0} {1}, {2} {3}", Model.AddedBy.FirstName, Model.AddedBy.SecondName,Model.Added.ToLongTimeString(), Model.Added.ToLongDateString()) : "")
-    <br />
-    @(Model.EditedBy != null ? string.Format("Отредактировано: {0} {1}, {2} {3}", Model.EditedBy.FirstName, Model.EditedBy.SecondName, Model.Edited.ToLongTimeString(), Model.Edited.ToLongDateString()) : "")
 </p>

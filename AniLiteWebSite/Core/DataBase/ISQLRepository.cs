@@ -1,4 +1,5 @@
 ﻿using AniLiteWebSite.Core.DataBase.Model;
+using AniLiteWebSite.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +20,7 @@ namespace AniLiteWebSite.Core.DataBase
         bool AddProduct(Product product);
         Product GetProductById(int id);
         IEnumerable<Product> getProducts(int from, int size);
+        IEnumerable<ProductSimple> GetProductSimples(int from, int size,User usr);
         #endregion Product
 
         ViewedProduct getViewedByProductAndUser(Product product, User user);

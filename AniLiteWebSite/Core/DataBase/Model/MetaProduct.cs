@@ -17,15 +17,49 @@ namespace AniLiteWebSite.Core.DataBase.Model
         public string Data { get; set; }
 
         public virtual Product Product { get; set; }
+        [NotMapped]
+        public DateTime DateTime
+        {
+            get
+            {
+                try { return DateTime.Parse(Data); }
+                catch { return DateTime.MinValue; }
+            }
+            set
+            {
+                Data = value.ToString();
+            }
+        }
+        [NotMapped]
+        public string String
+        {
+            get { return Data; }
+            set { Data = value; }
+        }
+        [NotMapped]
+        public int Int
+        {
+            get
+            {
+                try { return int.Parse(Data); }
+                catch { return 0; }
+            }
+            set
+            {
+                Data = value.ToString();
+            }
 
-        public object Parse() { return null; }
-        public void Set() { }
+        }
     }
 
     public enum TypeOfMetaProduct : int
     {
-        Begin,
-        End,
-        Ended
+        Begin = 0,
+        End = 10,
+        Ended = 20,
+        Name = 30,
+        NumberOfEpisode = 40,
+        PosterFromURI = 50,
+        FromURI = 60
     }
 }
