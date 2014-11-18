@@ -11,6 +11,8 @@ namespace AniLiteWebSite.Core.DataBase.Model
         public User()
         {
             this.Viewed = new List<ViewedProduct>();
+            this.History = new List<Story>();
+            this.Products = new List<Product>();
         }
 
         //Значения
@@ -36,11 +38,10 @@ namespace AniLiteWebSite.Core.DataBase.Model
 
         public virtual UserRole Role { get; set; }
         public virtual ICollection<ViewedProduct> Viewed { get; set; }
-
+        public virtual ICollection<Story> History { get; set; }
+        public virtual ICollection<Product> Products { get; set; }
         // Дополнения
 
-        public System.DateTime Added { get; set; }
-        public System.DateTime Edited { get; set; }
         public System.DateTime LastLogin { get; set; }
     }
 }

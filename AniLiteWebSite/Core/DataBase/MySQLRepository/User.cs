@@ -8,13 +8,33 @@ namespace AniLiteWebSite.Core.DataBase
 {
     public partial class MySQLRepository : ISQLRepository
     {
+        public User CreateOrUpdateUser(OAuth2.Models.UserInfo info)
+        {
+            User usr = GetUserByIdGoogle(info.Id);
+            if (usr == null)
+            {
+                usr = new User();
+                usr.IdGoogle = info.Id;
+                usr.Role = GetRoleById(1);
+                usr.IdU = Guid.NewGuid().ToString();
+            }
+            usr.LastLogin = DateTime.Now;
+            usr.FirstName = info.FirstName;
+            usr.SecondName = info.LastName;
+            usr.Email = info.Email;
+            usr.AvatarURI = info.PhotoUri;
+            if (usr.Id == 0)
+            {
+                Db.Users.Add(usr);
+            }
+            Db.SaveChanges();
+            return usr;
+        }
         public bool CreateUser(User usr)
         {
             if (usr == null) return false;
             if (usr.Id != 0) return false;
             if (usr.LastLogin == null) usr.LastLogin = DateTime.MinValue;
-            usr.Edited = DateTime.MinValue;
-            usr.Added = DateTime.Now;
             if(usr.IdU ==null) usr.IdU = Guid.NewGuid().ToString();
             Db.Users.Add(usr);
             Db.SaveChanges();
@@ -31,8 +51,6 @@ namespace AniLiteWebSite.Core.DataBase
             user.SecondName = usr.SecondName;
             user.AvatarURI = usr.AvatarURI;
             user.IdU = usr.IdU;
-            user.Added = usr.Added;
-            user.Edited = DateTime.Now;
             user.LastLogin = usr.LastLogin;
             user.Role = usr.Role;
             Db.SaveChanges();

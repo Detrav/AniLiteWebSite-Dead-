@@ -57,31 +57,14 @@ namespace AniLiteWebSite.Controllers
             {
                 var info = Auth.Clients.First().GetUserInfo(Request.QueryString);
                 if (info == null) { return RedirectToAction("Authorization", "Error"); }
-                User usr = sqlRepository.GetUserByIdGoogle(info.Id);
-                if (usr == null)
-                {
-                    usr = new User();
-                    usr.IdGoogle = info.Id;
-                    usr.Role = sqlRepository.GetRoleById(1);
-                    usr.IdU = Guid.NewGuid().ToString();
-                }
-                usr.LastLogin = DateTime.Now;
-                usr.FirstName = info.FirstName;
-                usr.SecondName = info.LastName;
-                usr.Email = info.Email;
-                usr.AvatarURI = info.PhotoUri;
-
-                if (!sqlRepository.CreateUser(usr))
-                    if (!sqlRepository.UpdateUser(usr))
-                    {
-                        return RedirectToAction("Authorization", "Error");
-                    }
-
-                User = usr;
+                User = sqlRepository.CreateOrUpdateUser(info);
                 if (User == null) return RedirectToAction("Authorization", "Error");
-                return RedirectToAction("Index", "Home");;
+                return RedirectToAction("Index", "Home"); ;
             }
-            catch { return RedirectToAction("Authorization", "Error"); }
+            catch (Exception e)
+            {
+                return RedirectToAction("Authorization", "Error");
+            }
         }
     }
 }

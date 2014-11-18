@@ -20,10 +20,5 @@ namespace AniLiteWebSite.Core.DataBase.Model
 
         public virtual User User { get; set; }
         public virtual Product Product { get; set; }
-
-        // Дополнительно
-
-        public DateTime Added { get; set; }
-        public DateTime Edited { get; set; }
     }
 }

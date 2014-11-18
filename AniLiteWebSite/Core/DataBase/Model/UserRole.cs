@@ -28,10 +28,5 @@ namespace AniLiteWebSite.Core.DataBase.Model
         //Связи
 
         public virtual ICollection<User> Users { get; set; }
-
-        //Дополнения
-
-        public System.DateTime Added { get; set; }
-        public System.DateTime Edited { get; set; }
     }
 }

@@ -38,10 +38,6 @@ namespace AniLiteWebSite.Controllers
         {
             if(ModelState.IsValid)
             {
-                product.AddedBy = User;
-                product.Added = DateTime.Now;
-                product.EditedBy = null;
-                product.Edited = DateTime.MinValue;
                 if(sqlRepository.AddProduct(product))
                 {
                     return RedirectToAction("Details", "Product", new { id = product.Id });

@@ -11,19 +11,19 @@ namespace AniLiteWebSite.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(AniLiteWebSite.Core.DataBase.AniLiteDBContext context)
         {
             if (context.UserRoles.Count() == 0)
             {
-                context.UserRoles.AddOrUpdate(new UserRole { Name = "Гость", Level = 0, Added = DateTime.Now, Edited = DateTime.MinValue });
-                context.UserRoles.AddOrUpdate(new UserRole { Name = "Пользователь", Level = 100, Added = DateTime.Now, Edited = DateTime.MinValue });
-                context.UserRoles.AddOrUpdate(new UserRole { Name = "Модератор", Level = 200, Added = DateTime.Now, Edited = DateTime.MinValue });
-                context.UserRoles.AddOrUpdate(new UserRole { Name = "Администратор", Level = 500, Added = DateTime.Now, Edited = DateTime.MinValue });
-                context.UserRoles.AddOrUpdate(new UserRole { Name = "Супер Администратор", Level = 1000, Added = DateTime.Now, Edited = DateTime.MinValue });
+                context.UserRoles.AddOrUpdate(new UserRole { Name = "Гость", Level = 0 });
+                context.UserRoles.AddOrUpdate(new UserRole { Name = "Пользователь", Level = 100 });
+                context.UserRoles.AddOrUpdate(new UserRole { Name = "Модератор", Level = 200 });
+                context.UserRoles.AddOrUpdate(new UserRole { Name = "Администратор", Level = 500 });
+                context.UserRoles.AddOrUpdate(new UserRole { Name = "Супер Администратор", Level = 1000 });
             }
-
             //  This method will be called after migrating to the latest version.
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 

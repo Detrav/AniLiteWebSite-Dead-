@@ -51,15 +51,6 @@ namespace AniLiteWebSite.Core.DataBase.Model
         // Связи
 
         public virtual ICollection<ViewedProduct> Viewed { get; set; }
-
-        //Дополнения
-        [DisplayName("Добавленно:")]
-        public virtual User AddedBy { get; set; }
-        [DisplayName("Отредактировано")]
-        public virtual User EditedBy { get; set; }
-        [DisplayName("Добавленно")]
-        public DateTime Added { get; set; }
-        [DisplayName("Отредактировано")]
-        public DateTime Edited { get; set; }
+        public virtual User Who { get; set; }
     }
 }

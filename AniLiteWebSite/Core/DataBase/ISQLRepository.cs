@@ -10,6 +10,7 @@ namespace AniLiteWebSite.Core.DataBase
     {
         #region User
         bool CreateUser(User usr);
+        User CreateOrUpdateUser(OAuth2.Models.UserInfo usr);
         bool UpdateUser(User usr);
         User GetUserByIdGoogle(string p);
         #endregion User
