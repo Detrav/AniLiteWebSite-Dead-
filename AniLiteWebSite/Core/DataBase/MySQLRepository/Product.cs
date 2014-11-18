@@ -45,13 +45,16 @@ namespace AniLiteWebSite.Core.DataBase
                 ps.AvatarURI64 = p.AvatarURI;
                 var names = new List<string>();
                 names.Add(p.Name);
-                var query = from u in usr.Viewed where u.Product == p select u;
-                if(query.Count() >0)
+                if (usr != null)
                 {
-                    var v = query.First();
-                    ps.Viewed = true;
-                    ps.ViewedEnd = v.End;
-                    ps.NumCurrent = v.Current;
+                    var query = from u in usr.Viewed where u.Product == p select u;
+                    if (query.Count() > 0)
+                    {
+                        var v = query.First();
+                        ps.Viewed = true;
+                        ps.ViewedEnd = v.End;
+                        ps.NumCurrent = v.Current;
+                    }
                 }
                 foreach(var meta in p.MetaData)
                 {
@@ -70,6 +73,53 @@ namespace AniLiteWebSite.Core.DataBase
             }
 
             return productsimples;
+        }
+
+        public ProductDetails GetProductDetailsById(int id)
+        {
+            var p = GetProductById(id);
+            if (p == null) return null;
+            var pd = new ProductDetails();
+            pd.Id = p.Id;
+            pd.Name = p.Name;
+            List<string> names = null;
+            pd.Rate = p.Rate;
+            pd.AvatarURI = p.AvatarURI;
+            pd.Confirmed = p.Confirmed;
+            if(p.Who!=null)
+            try { pd.UserName = p.Who.FirstName + " " + p.Who.SecondName; }
+            catch { pd.UserName = p.Who.Email; }
+
+            foreach(var meta in p.MetaData)
+            {
+                switch(meta.Type)
+                {
+                    case TypeOfMetaProduct.Name:
+                        if (names == null) names = new List<string>();
+                        names.Add(meta.String);
+                        break;
+                    case TypeOfMetaProduct.Begin:
+                        pd.Begin = meta.DateTime;
+                        break;
+                    case TypeOfMetaProduct.End:
+                        pd.End = meta.DateTime;
+                        break;
+                    case TypeOfMetaProduct.Ended:
+                        pd.Ended = meta.Bool;
+                        break;
+                    case TypeOfMetaProduct.NumberOfEpisode:
+                        pd.NumOfEpisode = meta.Int;
+                        break;
+                    case TypeOfMetaProduct.PosterFromURI:
+                        pd.PosterFromURI = meta.String;
+                        break;
+                    case TypeOfMetaProduct.FromURI:
+                        pd.FromURI = meta.String;
+                        break;
+                }
+            }
+
+            return pd;
         }
     }
 }

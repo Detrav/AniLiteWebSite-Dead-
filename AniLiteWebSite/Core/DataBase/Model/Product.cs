@@ -17,11 +17,10 @@ namespace AniLiteWebSite.Core.DataBase.Model
 
         // Значения
 
-        [DisplayName("#")]
         [Key]
         public int Id { get; set; }
 
-        [DisplayName("Название")]
+        
         [Required]
         [MaxLength(100)]
         public string Name { get; set; }

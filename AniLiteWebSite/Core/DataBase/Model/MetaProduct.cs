@@ -50,6 +50,20 @@ namespace AniLiteWebSite.Core.DataBase.Model
             }
 
         }
+        [NotMapped]
+        public bool Bool
+        {
+            get
+            {
+                try { return bool.Parse(Data); }
+                catch { return false; }
+            }
+            set
+            {
+                Data = value.ToString();
+            }
+
+        }
     }
 
     public enum TypeOfMetaProduct : int

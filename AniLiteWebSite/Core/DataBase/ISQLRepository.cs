@@ -24,5 +24,7 @@ namespace AniLiteWebSite.Core.DataBase
         #endregion Product
 
         ViewedProduct getViewedByProductAndUser(Product product, User user);
+
+        ProductDetails GetProductDetailsById(int id);
     }
 }
