@@ -15,7 +15,7 @@ namespace AniLiteWebSite.Core.DataBase
             {
                 usr = new User();
                 usr.IdGoogle = info.Id;
-                usr.Role = GetRoleById(1);
+                usr.Role = UserRole.Guest;
                 usr.IdU = Guid.NewGuid().ToString();
             }
             usr.LastLogin = DateTime.Now;

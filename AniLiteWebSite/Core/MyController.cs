@@ -87,23 +87,13 @@ namespace AniLiteWebSite.Core
             }
         }
 
-        private int _userlevel = -1;
-        public int UserLevel
+        public new UserRole UserRole
         {
             get
             {
-                if (_userlevel < 0)
-                {
-                    _userlevel = 0;
-                    if (User != null)
-                    {
-                        if (User.Role != null)
-                        {
-                            _userlevel = User.Role.Level;
-                        }
-                    }
-                }
-                return _userlevel;
+                if (User != null)
+                    return User.Role;
+                return UserRole.Guest;
             }
         }
     }

@@ -11,7 +11,7 @@ namespace AniLiteWebSite.Core.DataBase.Model
         [Key]
         public int Id { get; set; }
         [Required]
-        [MaxLength(100)]
+        [MaxLength(250)]
         public string Data { get; set; }
         [Required]
         public DateTime When { get; set; }

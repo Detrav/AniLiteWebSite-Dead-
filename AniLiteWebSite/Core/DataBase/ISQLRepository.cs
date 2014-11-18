@@ -15,10 +15,6 @@ namespace AniLiteWebSite.Core.DataBase
         User GetUserByIdGoogle(string p);
         #endregion User
 
-        #region UserRole
-        UserRole GetRoleById(int p);
-        #endregion UserRole
-
         #region Product
         bool AddProduct(Product product);
         Product GetProductById(int id);

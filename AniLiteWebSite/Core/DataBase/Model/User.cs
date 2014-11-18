@@ -34,14 +34,31 @@ namespace AniLiteWebSite.Core.DataBase.Model
         [MaxLength(50)]
         public string IdU { get; set; }
 
+        public UserRole Role { get; set; }
+
         //Cвязи
 
-        public virtual UserRole Role { get; set; }
         public virtual ICollection<ViewedProduct> Viewed { get; set; }
         public virtual ICollection<Story> History { get; set; }
         public virtual ICollection<Product> Products { get; set; }
         // Дополнения
 
         public System.DateTime LastLogin { get; set; }
+    }
+
+    public enum UserRole : byte
+    {
+        [Display(Name = "Заблокировано")]
+        Ban = 0,
+        [Display(Name= "Гость")]
+        Guest = 1,
+        [Display(Name = "Пользователь")]
+        User = 11,
+        [Display(Name = "Модератор")]
+        Moderator = 21,
+        [Display(Name = "Администратор")]
+        Administrator = 31,
+        [Display(Name = "Создатель")]
+        Creator = 41
     }
 }

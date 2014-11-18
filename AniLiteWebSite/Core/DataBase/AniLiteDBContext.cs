@@ -28,9 +28,6 @@ namespace AniLiteWebSite.Core.DataBase
 
         public DbSet<Product> Products { get; set; }
 
-        //Вспомагательные
-        //Пользователь
-        public DbSet<UserRole> UserRoles { get; set; }
         //Анимэ
         //Пользователь + Анимэ
         public DbSet<ViewedProduct> ProductVieweds { get; set; }
