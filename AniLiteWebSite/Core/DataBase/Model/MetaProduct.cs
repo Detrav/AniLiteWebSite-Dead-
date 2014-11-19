@@ -74,6 +74,13 @@ namespace AniLiteWebSite.Core.DataBase.Model
         Name = 30,
         NumberOfEpisode = 40,
         PosterFromURI = 50,
-        FromURI = 60
+        FromURI = 60,
+        Country = 70,
+        Genre = 80,
+        Type = 90, // ТВ, Полнометражка, короткометражка
+        View = 100,// Кино Анимация 3D
+        Director = 110,
+        Author = 120,
+        InRole = 130
     }
 }
