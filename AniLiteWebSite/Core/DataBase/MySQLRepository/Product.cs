@@ -89,7 +89,8 @@ namespace AniLiteWebSite.Core.DataBase
             if(p.Who!=null)
             try { pd.UserName = p.Who.FirstName + " " + p.Who.SecondName; }
             catch { pd.UserName = p.Who.Email; }
-
+            List<string> genre = null;
+            List<string> InRole = null;
             foreach(var meta in p.MetaData)
             {
                 switch(meta.Type)
@@ -116,9 +117,34 @@ namespace AniLiteWebSite.Core.DataBase
                     case TypeOfMetaProduct.FromURI:
                         pd.FromURI = meta.String;
                         break;
+                    case TypeOfMetaProduct.Country:
+                        pd.Country = meta.String;
+                        break;
+                    case TypeOfMetaProduct.Genre:
+                        if (genre == null) genre = new List<string>();
+                        genre.Add(meta.String);
+                        break;
+                    case TypeOfMetaProduct.Type:
+                        pd.Type = meta.String;
+                        break;
+                    case TypeOfMetaProduct.View:
+                        pd.View = meta.String;
+                        break;
+                    case TypeOfMetaProduct.Director:
+                        pd.Director = meta.String;
+                        break;
+                    case TypeOfMetaProduct.Author:
+                        pd.Author = meta.String;
+                        break;
+                    case TypeOfMetaProduct.InRole:
+                        if (InRole == null) InRole = new List<string>();
+                        InRole.Add(meta.String);
+                        break;
                 }
             }
-
+            pd.Names = names;
+            pd.Genre = genre;
+            pd.InRole = InRole;
             return pd;
         }
     }

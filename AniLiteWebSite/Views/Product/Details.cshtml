@@ -10,12 +10,30 @@
     <div class="col-md-3" ><img style="max-height:320px;max-width:240px;" src="@Model.AvatarURI" /></div>
     <div class="col-md-9">
         <p>
-            <font size="3"><b>@Model.Name [0000]</b></font>
-            <font size="2"><br /> FullName</font>
+            <font size="3"><b>@Model.Name</b></font>
+                @if (Model.Names != null)
+                {
+                    <font size="2">
+                        @foreach (var it in Model.Names)
+                        {
+                        @it <br />
+                        }
+                    </font>
+                }    
         </p>
+
+        @if (Model.Country != null)
+        {
+            <b>Производство:</b> @Model.Country
+        }
+        @if (Model.Begin != null)
+        { 
         <p>
-            Трансляция с 00.00.0000 по 00.00.0000
+            <b>Трансляция:</b> с  @Model.Begin.ToShortDateString() 
+            @(Model.Ended && Model.End!=null ? " по "+Model.End.ToShortDateString():"")
         </p>
+        }
+        
         <p>
             Рейтинг: @Model.Rate.ToString("F2")
         </p>
