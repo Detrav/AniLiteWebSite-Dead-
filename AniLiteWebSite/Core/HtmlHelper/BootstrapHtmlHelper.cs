@@ -100,7 +100,7 @@ namespace AniLiteWebSite.Core.HtmlHelper
 
             sb.AppendLine(String.Format("<div class=\"col-sm-{0}\">", col_sm));
             IEnumerable<object> list = expression.Compile()(html.ViewData.Model) as IEnumerable<object>;
-            int i = 0;
+            int i = 0;if(list!=null)
             foreach(var it in list)
             {
                 sb.AppendLine("<div class=\"input-group\">");
@@ -127,8 +127,7 @@ namespace AniLiteWebSite.Core.HtmlHelper
         public static MvcHtmlString BSFGForCheckBox<TModel>(
            this HtmlHelper<TModel> html,
            Expression<Func<TModel, bool>> expression,
-           int col_sm,
-           string PlaceHolder)
+           int col_sm)
         {
             StringBuilder sb = new StringBuilder();
             sb.AppendLine("<div class=\"form-group\">");
@@ -137,6 +136,44 @@ namespace AniLiteWebSite.Core.HtmlHelper
             sb.AppendLine(String.Format("<div class=\"col-sm-{0}\">", col_sm));
             sb.AppendLine(InputExtensions
                 .CheckBoxFor(html, expression, new { @class = "form-control"}).ToHtmlString());
+            sb.AppendLine(ValidationExtensions
+                .ValidationMessageFor(html, expression).ToHtmlString());
+            sb.AppendLine("</div>");
+            sb.AppendLine("</div>");
+            return new MvcHtmlString(sb.ToString());
+        }
+
+        public static MvcHtmlString BSFGForCalendar<TModel, TProperty>(
+            this HtmlHelper<TModel> html,
+            Expression<Func<TModel, TProperty>> expression,
+            int col_sm)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("<div class=\"form-group\">");
+            sb.AppendLine(LabelExtensions
+                .LabelFor(html, expression, new { @class = String.Format("col-sm-{0} control-label", 12 - col_sm) }).ToHtmlString());
+            sb.AppendLine(String.Format("<div class=\"col-sm-{0}\">", col_sm));
+            sb.AppendLine(InputExtensions
+                .TextBoxFor(html, expression, new { @class = "form-control" }).ToHtmlString());
+            sb.AppendLine(ValidationExtensions
+                .ValidationMessageFor(html, expression).ToHtmlString());
+            sb.AppendLine("</div>");
+            sb.AppendLine("</div>");
+            return new MvcHtmlString(sb.ToString());
+        }
+
+        public static MvcHtmlString BSFGForNumericBox<TModel, TProperty>(
+            this HtmlHelper<TModel> html,
+            Expression<Func<TModel, TProperty>> expression,
+            int col_sm)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("<div class=\"form-group\">");
+            sb.AppendLine(LabelExtensions
+                .LabelFor(html, expression, new { @class = String.Format("col-sm-{0} control-label", 12 - col_sm) }).ToHtmlString());
+            sb.AppendLine(String.Format("<div class=\"col-sm-{0}\">", col_sm));
+            sb.AppendLine(InputExtensions
+                .TextBoxFor(html, expression, new { @class = "form-control" }).ToHtmlString());
             sb.AppendLine(ValidationExtensions
                 .ValidationMessageFor(html, expression).ToHtmlString());
             sb.AppendLine("</div>");

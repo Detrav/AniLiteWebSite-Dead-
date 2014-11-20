@@ -70,3 +70,28 @@ namespace AniLiteWebSite.Models
         public IEnumerable<string> InRole { get; set; }
     }
 }
+
+/*
+ *  
+    -+public int Id { get; set; }
+    ++public string Name { get; set; }
+    ++public List<string> Names { get; set; }
+    +-public string Description { get; set; }
+    -+public float Rate { get; set; }
+    ++public string AvatarURI { get; set; }
+    ++public bool Confirmed { get; set; }
+    -+public string UserName { get; set; }
+    ++public DateTime Begin { get; set; }
+    ++public DateTime End { get; set; }
+    ++public bool Ended { get; set; }
+    ++public int NumOfEpisode { get; set; }
+    ++public string PosterFromURI { get; set; }
+    ++public string FromURI { get; set; }
+    ++public string Country { get; set; }
+    ++public IEnumerable<string> Genre { get; set; }
+    ++public string Type { get; set; }
+    ++public string View { get; set; }
+    ++public string Director { get; set; }
+    ++public string Author { get; set; }
+    ++public IEnumerable<string> InRole { get; set; }
+ */
