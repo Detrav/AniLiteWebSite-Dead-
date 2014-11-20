@@ -12,8 +12,8 @@
 @using (Html.BeginForm("Add", "Product", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
-    @Html.BSFromGroupForTextBox(m => m.Name,10,"Отображаемое название продукта")
-    @Html.BSFromGroupForTextArea(m => m.Description, 10, "Короткое описание")
-    @Html.BSFromGroupForTextBox(m => m.AvatarURI, 10, "Ссылка на постер, любого размера")
-    @Html.BSFromGroupSubmitSuccess("AddButton",10,"Добавить")
+    @Html.BSFGForTextBox(m => m.Name,10,"Отображаемое название продукта")
+    @Html.BSFGForTextArea(m => m.Description, 10, "Короткое описание")
+    @Html.BSFGForTextBox(m => m.AvatarURI, 10, "Ссылка на постер, любого размера")
+    @Html.BSFGSubmitSuccess("AddButton",10,"Добавить")
 }

@@ -10,7 +10,7 @@ namespace AniLiteWebSite.Core.HtmlHelper
 {
     public static class BootstrapExtension
     {
-        public static MvcHtmlString BSFromGroupForTextBox<TModel, TProperty>(
+        public static MvcHtmlString BSFGForTextBox<TModel, TProperty>(
             this HtmlHelper<TModel> html,
             Expression<Func<TModel, TProperty>> expression,
             int col_sm,
@@ -30,7 +30,7 @@ namespace AniLiteWebSite.Core.HtmlHelper
             return new MvcHtmlString(sb.ToString());
         }
 
-        public static MvcHtmlString BSFromGroupForTextArea<TModel, TProperty>(
+        public static MvcHtmlString BSFGForTextArea<TModel, TProperty>(
             this HtmlHelper<TModel> html,
             Expression<Func<TModel, TProperty>> expression,
             int col_sm,
@@ -50,7 +50,7 @@ namespace AniLiteWebSite.Core.HtmlHelper
             return new MvcHtmlString(sb.ToString());
         }
 
-        public static MvcHtmlString BSFromGroupSubmitSuccess<TModel>(
+        public static MvcHtmlString BSFGSubmitSuccess<TModel>(
             this HtmlHelper<TModel> html,
             string Name,
             int col_sm,
@@ -65,7 +65,7 @@ namespace AniLiteWebSite.Core.HtmlHelper
             return new MvcHtmlString(sb.ToString());
         }
 
-        public static MvcHtmlString BSFromGroupLabel<TModel, TProperty>(
+        public static MvcHtmlString BSFGLabel<TModel, TProperty>(
             this HtmlHelper<TModel> html,
             Expression<Func<TModel, TProperty>> expression,
             int col_sm)
@@ -82,7 +82,7 @@ namespace AniLiteWebSite.Core.HtmlHelper
             return new MvcHtmlString(sb.ToString());
         }
 
-        public static MvcHtmlString BSFromGroupForCollectionTextBox<TModel, TProperty>(
+        public static MvcHtmlString BSFGForListTextBox<TModel, TProperty>(
             this HtmlHelper<TModel> html,
             Expression<Func<TModel, TProperty>> expression,
             int col_sm,
@@ -91,15 +91,32 @@ namespace AniLiteWebSite.Core.HtmlHelper
             StringBuilder sb = new StringBuilder();
             sb.AppendLine("<div class=\"form-group\">");
             sb.AppendLine(LabelExtensions
-                .LabelFor(html, expression, new { @class = String.Format("col-sm-{0} control-label", 12 - col_sm) }).ToHtmlString());
-            sb.AppendLine(String
-                .Format("<div class=\"col-sm-{0}\">", 12 - col_sm));
-            ////////////////////////////////////////////////buttons
-            sb.AppendLine("</div>");
-            //For
-            
-                sb.AppendLine(String.Format("<div class=\"col-sm-{0}\">", col_sm));
+                .LabelFor(html, expression, new { @class = String.Format("col-sm-{0} control-label",12-col_sm) }).ToHtmlString());
+                      
+            string name = (expression.Body as MemberExpression).Member.Name;
+
+            sb.AppendLine(String.Format("<div class=\"col-sm-{0}\">", col_sm));
+            IEnumerable<object> list = expression.Compile()(html.ViewData.Model) as IEnumerable<object>;
+            int i = 0;
+            foreach(var it in list)
+            {
+                sb.AppendLine("<div class=\"input-group\">");
+                sb.AppendLine(InputExtensions
+                    .TextBox(html, String.Format("{0}[{1}]", name, i), it,
+                    new { @class = "form-control", placeholder = PlaceHolder }
+                    ).ToHtmlString());
+                sb.AppendLine("<span class=\"input-group-btn\">");
+                sb.AppendLine(String.Format(
+                "<input type=\"button\" value=\"Удалить\" class=\"btn btn-danger\">", name, i));
+                sb.AppendLine("</span>");
                 sb.AppendLine("</div>");
+                i++;
+            }
+            
+            
+            sb.AppendLine(String.Format(
+                "<input type=\"button\" value=\"Добавить eщё\" class=\"form-control btn btn-xs btn-success\">", name));
+            sb.AppendLine("</div>");
             sb.AppendLine("</div>");
             return new MvcHtmlString(sb.ToString());
         }

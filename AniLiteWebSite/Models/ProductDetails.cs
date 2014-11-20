@@ -13,6 +13,7 @@ namespace AniLiteWebSite.Models
         [DisplayName("Название")]
         public string Name { get; set; }
 
+        [DisplayName("Название на других языках")]
         public List<string> Names { get; set; }
 
         [DisplayName("Описание")]
