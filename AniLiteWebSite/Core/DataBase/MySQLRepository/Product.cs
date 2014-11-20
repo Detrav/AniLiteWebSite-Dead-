@@ -142,15 +142,7 @@ namespace AniLiteWebSite.Core.DataBase
                         break;
                 }
             }
-            if (names !=null)
-            {
-                if(names.Count > 0)
-                pd.Names = names.First();
-                for (int i = 1; i < names.Count; i++)
-                {
-                    pd.Names += Environment.NewLine + names[i];
-                }
-            }
+            pd.Names = names;
             pd.Genre = genre;
             pd.InRole = InRole;
             return pd;

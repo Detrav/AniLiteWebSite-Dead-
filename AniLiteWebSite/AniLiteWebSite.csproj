@@ -150,6 +150,7 @@
     <Compile Include="Controllers\HelperController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Core\HtmlHelper\BootstrapHtmlHelper.cs" />
     <Compile Include="Core\DataBase\AniLiteDBContext.cs" />
     <Compile Include="Core\DataBase\ISQLRepository.cs" />
     <Compile Include="Core\DataBase\Model\MetaProduct.cs" />
