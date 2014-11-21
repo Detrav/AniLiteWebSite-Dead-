@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
@@ -98,7 +99,7 @@ namespace AniLiteWebSite.Core.HtmlHelper
                       
             string name = (expression.Body as MemberExpression).Member.Name;
 
-            sb.AppendLine(String.Format("<div class=\"col-sm-{0}\">", col_sm));
+            sb.AppendLine(String.Format("<div class=\"col-sm-{0} js-for-{1}\">", col_sm,name));
             IEnumerable<object> list = expression.Compile()(html.ViewData.Model) as IEnumerable<object>;
             int i = 0;if(list!=null)
             foreach(var it in list)
@@ -110,7 +111,7 @@ namespace AniLiteWebSite.Core.HtmlHelper
                     ).ToHtmlString());
                 sb.AppendLine("<span class=\"input-group-btn\">");
                 sb.AppendLine(String.Format(
-                "<input type=\"button\" value=\"Удалить\" class=\"btn btn-danger\">", name, i));
+                "<input type=\"button\" value=\"Удалить\" class=\"btn btn-danger\" onclick=\"\">", name, i));
                 sb.AppendLine("</span>");
                 sb.AppendLine("</div>");
                 i++;
@@ -180,5 +181,27 @@ namespace AniLiteWebSite.Core.HtmlHelper
             sb.AppendLine("</div>");
             return new MvcHtmlString(sb.ToString());
         }
+
+        public static MvcHtmlString BSFGForEnumDDL<TModel>(
+         this HtmlHelper<TModel> html,
+             Type MyEnum, string ValName)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append(String.Format("<select name=\"{0}\">", ValName));
+            foreach(var iten in Enum.GetValues(MyEnum))
+            {
+                var value = iten.ToString();
+                var name = (MyEnum.GetMember(iten.ToString()).First().GetCustomAttributes(typeof(DisplayAttribute), true).First() as DisplayAttribute).Name;
+                //var da = iten.GetCustomAttributes(typeof(DisplayAttribute),true);
+                sb.Append(String.Format("<option value=\"{0}\">",value));
+                sb.Append(name);
+                sb.Append("</option>");
+
+            }
+            sb.Append("</select>");
+            return new MvcHtmlString(sb.ToString());
+        }
+
+        
     }
 }

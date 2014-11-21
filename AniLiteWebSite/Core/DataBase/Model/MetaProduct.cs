@@ -68,19 +68,33 @@ namespace AniLiteWebSite.Core.DataBase.Model
 
     public enum TypeOfMetaProduct : int
     {
+        [Display(Name="Начало трансляции")]
         Begin = 0,
+        [Display(Name = "Конец трансляции")]
         End = 10,
+        [Display(Name = "Закончилось?")]
         Ended = 20,
+        [Display(Name = "Название на других языках")]
         Name = 30,
+        [Display(Name = "Количество эпизодов")]
         NumberOfEpisode = 40,
+        [Display(Name = "Логотип откуда взята информация")]
         PosterFromURI = 50,
+        [Display(Name = "Источник информации")]
         FromURI = 60,
+        [Display(Name = "Страна")]
         Country = 70,
+        [Display(Name = "Жанр")]
         Genre = 80,
+        [Display(Name = "Тип произведения")]
         Type = 90, // ТВ, Полнометражка, короткометражка
+        [Display(Name = "Вид произведения")]
         View = 100,// Кино Анимация 3D
+        [Display(Name = "Режисёр")]
         Director = 110,
+        [Display(Name = "Автор оригинала")]
         Author = 120,
+        [Display(Name = "В ролях")]
         InRole = 130
     }
 }

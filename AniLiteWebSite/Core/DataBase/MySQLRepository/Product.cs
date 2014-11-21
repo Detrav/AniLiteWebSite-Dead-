@@ -147,5 +147,29 @@ namespace AniLiteWebSite.Core.DataBase
             pd.InRole = InRole;
             return pd;
         }
+
+        public ProductEdit GetProductEditById(int id)
+        {
+            var p = GetProductById(id);
+            if (p == null) return null;
+            var pd = new ProductEdit();
+            pd.AvatarURI = p.AvatarURI;
+            pd.Confirmed = p.Confirmed;
+            pd.Description = p.Description;
+            pd.Id = p.Id;
+            pd.Name = p.Name;
+            pd.MetaData = new List<MetaProduct>();
+            foreach(var it in p.MetaData)
+            {
+                pd.MetaData.Add(new MetaProduct
+                {
+                    Id = it.Id,
+                    Type = it.Type,
+                    Data = it.Data
+                });
+            }
+            pd.MetaData = pd.MetaData.OrderBy(m => m.Type).ToList();
+            return pd;
+        }
     }
 }

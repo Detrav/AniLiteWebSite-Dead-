@@ -56,18 +56,17 @@ namespace AniLiteWebSite.Controllers
         [HttpGet]
         public ActionResult Edit(int id)
         {
-            var product = sqlRepository.GetProductDetailsById(id);
+            var product = sqlRepository.GetProductEditById(id);
             if (product == null) return RedirectToAction("Error", "Error");
-            product.Names = new List<string>();
-            product.Names.Add("test1");
-            product.Names.Add("test2");
-            product.Names.Add("test3");
-            product.Names.Add("test4");
+            //product.Names.Add("test1");
+            //product.Names.Add("test2");
+            //product.Names.Add("test3");
+           // product.Names.Add("test4");
             return View(product);
         }
 
         [HttpPost]
-        public ActionResult Edit(ProductDetails product)
+        public ActionResult Edit(ProductEdit product)
         {
             return View(product);
         }

@@ -1,5 +1,5 @@
 ﻿@using AniLiteWebSite.Core.HtmlHelper
-@model AniLiteWebSite.Models.ProductDetails
+@model AniLiteWebSite.Models.ProductEdit
 
 @{
     ViewBag.Title = "Редактирование продукта";
@@ -7,38 +7,17 @@
 
 <h2>@ViewBag.Title</h2>
 
-@using (Html.BeginForm("Edit", "Product", new { Id = Model.Id }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+<hr />
+
+@using (Html.BeginForm("Edit", "Product", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
-    @Html.BSFGLabel(m => m.Id, 10)
-    @Html.BSFGForTextBox(m => m.Name, 10, "Отображаемое название")
-    @Html.BSFGForListTextBox(m => m.Names, 10, "Название на других языках")
-    @Html.BSFGLabel(m => m.Rate, 10)
-    @Html.BSFGForTextBox(m => m.AvatarURI, 10, "Ссылка на постер")
-    @Html.BSFGLabel(m => m.UserName, 10)
-    @Html.BSFGForCheckBox(m => m.Confirmed,10)
-    
-    @Html.BSFGForCalendar(m => m.Begin,10)
-    @Html.BSFGForCalendar(m => m.End,10)
-    @Html.BSFGForCheckBox(m => m.Ended,10)
-    @Html.BSFGForNumericBox(m => m.NumOfEpisode,10)
-    
-    @Html.BSFGForTextBox(m => m.PosterFromURI, 10, "Ссылка на логотип источника");
-    @Html.BSFGForTextBox(m => m.FromURI, 10, "Ссылка на источник");
-    
-    @Html.BSFGForTextBox(m => m.Country,10,"Страна производитель")
-    @Html.BSFGForListTextBox(m => m.Genre, 10, "Жанр, лучше из списка")
-    @Html.BSFGForTextBox(m => m.Type, 10,"Тип произведения")
-    @Html.BSFGForTextBox(m => m.View,10,"Вид произведения")
-    @Html.BSFGForTextBox(m => m.Director,10,"Режисёр")
-    @Html.BSFGForTextBox(m => m.Author, 10,"Автор орегинала")
-    
-    @Html.BSFGForListTextBox(m=>m.InRole,10,"В ролях или кто озвучивал")
+    @Html.BSFGForTextBox(m => m.Name,10,"Отображаемое название продукта")
+    @Html.BSFGForTextArea(m => m.Description, 10, "Короткое описание")
+    @Html.BSFGForTextBox(m => m.AvatarURI, 10, "Ссылка на постер, любого размера")
 
-
-    @Html.BSFGSubmitSuccess("SubmitButton", 10, "Сохранить")
+    @Html.BSFGForEnumDDL(typeof(AniLiteWebSite.Core.DataBase.Model.TypeOfMetaProduct),"ForAdd")
+    
+    @Html.BSFGSubmitSuccess("SaveButton",10,"Сохранить")
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>

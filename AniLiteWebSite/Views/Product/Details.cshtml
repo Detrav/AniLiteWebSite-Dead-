@@ -21,19 +21,66 @@
                     </font>
                 }    
         </p>
-
+        <p>
         @if (Model.Country != null)
         {
             <b>Производство:</b> @Model.Country
+            <br />
         }
-        @if (Model.Begin != null)
-        { 
-        <p>
-            <b>Трансляция:</b> с  @Model.Begin.ToShortDateString() 
-            @(Model.Ended && Model.End!=null ? " по "+Model.End.ToShortDateString():"")
-        </p>
+        @if(Model.Genre!=null)
+        {
+            <b>Жанр:</b>
+            foreach (var it in Model.Genre)
+            {
+                @it
+                @(", ")
+            }
+            <br />
         }
         
+        @if (Model.View!=null || Model.Type!=null)
+        {
+            <b>Тип:</b>
+            @(Model.View != null ? Model.View + ", " : "")
+            @(Model.Type != null ? Model.Type : "")
+            <br />
+        }
+        
+        @if (Model.Begin > DateTime.Now.AddYears(-200))
+        { 
+            <b>Трансляция:</b> @("с" + Model.Begin.ToShortDateString())
+            @(Model.Ended && Model.End > DateTime.Now.AddYears(-200) ? " по " + Model.End.ToShortDateString() : "")
+            <br />
+        }
+        
+        @if (Model.NumOfEpisode > 0)
+        {
+            <b>Количество эпизодов:</b> @(Model.Ended ? Model.NumOfEpisode.ToString() : Model.NumOfEpisode.ToString()+"+")
+            <br />
+        }
+        
+        @if(Model.Director!=null)
+        {
+            <b>Режисёр:</b> @Model.Director
+            <br />
+        }
+        
+        @if (Model.Author != null)
+        {
+            <b>Автор оригинала:</b> @Model.Author
+            <br />
+        }
+        
+        @if(Model.InRole!=null)
+        {
+            <b>В ролях:</b>
+            foreach(var it in Model.InRole)
+            {
+                @it
+                @(", ")
+            }
+        }
+        </p>
         <p>
             Рейтинг: @Model.Rate.ToString("F2")
         </p>

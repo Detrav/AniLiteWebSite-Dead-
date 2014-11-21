@@ -169,6 +169,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ProductDetails.cs" />
+    <Compile Include="Models\ProductEdit.cs" />
     <Compile Include="Models\ProductPlusViewed.cs" />
     <Compile Include="Models\ProductSimple.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -214,6 +215,7 @@
     <Content Include="Views\Product\Add.cshtml" />
     <Content Include="Views\Product\Index.cshtml" />
     <Content Include="Views\Product\Details.cshtml" />
+    <Content Include="Views\Shared\Edit.cshtml" />
     <Content Include="Views\Product\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
