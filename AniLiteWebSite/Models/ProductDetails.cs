@@ -14,7 +14,7 @@ namespace AniLiteWebSite.Models
         public string Name { get; set; }
 
         [DisplayName("Название на других языках")]
-        public IEnumerable<string> Names { get; set; }
+        public List<string> Names { get; set; }
 
         [DisplayName("Описание")]
         public string Description { get; set; }
@@ -52,7 +52,7 @@ namespace AniLiteWebSite.Models
         public string Country { get; set; }
 
         [DisplayName("Жанр")]
-        public IEnumerable<string> Genre { get; set; }
+        public List<string> Genre { get; set; }
 
         [DisplayName("Тип произведения")]
         public string Type { get; set; }
@@ -67,7 +67,12 @@ namespace AniLiteWebSite.Models
         public string Author { get; set; }
 
         [DisplayName("В ролях")]
-        public IEnumerable<string> InRole { get; set; }
+        public List<string> InRole { get; set; }
+
+        public ProductDetails()
+        {
+
+        }
     }
 }
 
