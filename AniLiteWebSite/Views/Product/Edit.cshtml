@@ -9,61 +9,16 @@
 
 <hr />
 
-@using (Html.BeginForm("Edit", "Product", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+@using (var BSFG = new BSFG(Url.Action("Edit","Product",new {Id = Model.Id}),"POST","form-horizontal",2,3))
 {
+    @BSFG.Begin();
     @Html.AntiForgeryToken()
     <!--Название-->
-    <div class="form-group">
-        <label class="col-sm-2 control-label" for="Name">Название</label>
-        <div class="col-sm-10">
-            <input class="form-control" id="Name" name="Name" placeholder="Отображаемое название продукта" type="text" value="@Model.Name">
-        </div>
-    </div>
-    <!--Описание-->
-    <div class="form-group">
-        <label class="col-sm-2 control-label" for="Description">Описание</label>
-        <div class="col-sm-10">
-            <textarea class="form-control" id="Description" name="Description" placeholder="Короткое описание" rows="4">@Model.Description</textarea>
-        </div>
-    </div>
-    <!--Ссылка на постер-->
-    <div class="form-group">
-        <label class="col-sm-2 control-label" for="AvatarURI">Постер</label>
-        <div class="col-sm-10">
-            <input class="form-control" id="AvatarURI" name="AvatarURI" placeholder="Ссылка на постер, любого размера" type="text" value="@Model.AvatarURI">
-        </div>
-    </div>
-    @Html.BSFGForListTextBox(m=>m.Names,10,"Название на других языках")
-    <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
-            <input type="submit" name="SaveButton" value="Сохранить" class="form-control btn btn-success">
-        </div>
-    </div>
+    @BSFG.FormGroup(BSFG.Label("Name", "Название"), BSFG.TextBox("Name", Model.Name, "Отображаемое название"))
+    @BSFG.FormGroup(BSFG.Label("Description", "Описание"), BSFG.TextArea("Description",4, Model.Description, "Короткое описание"))
+    @BSFG.FormGroup(BSFG.Label("Names","Другие названия"), BSFG.TextBoxList("Names",Model.Names.ToArray(),"Названия на других языках"))
+    @BSFG.End();
+    
 }
 @section FooterScript{
-    <script type="text/javascript">
-        $(".js-for-Names .input-group").forEach(function logArrayElements(element, index, array) {
-            Console.log(element);
-        });
-        BSFGAdd = function(name)
-            {
-            var input = $('<input>')
-                .attr('type', 'hidden')
-                .attr('name', 'Add' + name)
-                .val('Add');
-            $('form').append($(input));
-            $('form').submit();
-        }
-        BSFGRemove = function (name, num) {
-            $(".js-for-"+name+" > .input-group").each(function (index, element) {
-                if(index==num)
-                {
-                    $(element).remove();
-                }
-            });
-            $(".js-for-" + name + " > .input-group").each(function (index, element) {
-                $(element).children("input")[0].name = name + '[' + (index) + ']';
-            });
-        }
-    </script>
 }

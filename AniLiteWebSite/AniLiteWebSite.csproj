@@ -162,6 +162,7 @@
     <Compile Include="Core\DataBase\MySQLRepository\Product.cs" />
     <Compile Include="Core\DataBase\MySQLRepository\User.cs" />
     <Compile Include="Core\DataBase\MySQLRepository\ViewedProduct.cs" />
+    <Compile Include="Core\HtmlHelper\BSFG.cs" />
     <Compile Include="Core\MyController.cs" />
     <Compile Include="Core\SConfiguration.cs" />
     <Compile Include="Global.asax.cs">
