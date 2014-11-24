@@ -110,6 +110,13 @@ namespace AniLiteWebSite.Core.HtmlHelper
                 _for, _value, _onclick, _class);
         }
 
+        public string ButtonOnMouseDown(string _for, string _value = "Кнопка", string _onclick = "", string _class = "btn")
+        {
+            return String.Format(
+                "<a id=\"{0}\" name=\"{0}\" onmousedown=\"{2}\" class =\"{3}\" >{1}</a>",
+                _for, _value, _onclick, _class);
+        }
+
         public string TextArea(string _for,int row = 4, string _value = "", string _placeholder = "")
         {
             return String.Format(
@@ -151,16 +158,15 @@ namespace AniLiteWebSite.Core.HtmlHelper
         
         public string NumericalBox(string _for, int _value)
         {
-          /*  var sb = new StringBuilder();
+            var sb = new StringBuilder();
             sb.Append("<div class=\"input-group\">");
-            sb.Append(TextBox(_for, _value, _placeholder));
+            sb.Append(TextBox(_for, _value.ToString()));
             sb.Append("<span class=\"input-group-btn\">");
-            sb.Append(Button("Test" + _for, "Проверить", "BSFGTestImg('" + _for + "')", "btn"));
+            sb.Append(Button("Minus" + _for, "<span class=\"glyphicon glyphicon-minus\"></span>", "BSFGMinus('" + _for + "')", "btn btn-danger"));
+            sb.Append(Button("Plus" + _for, "<span class=\"glyphicon glyphicon-plus\"></span>", "BSFGPlus('" + _for + "')", "btn btn-success"));
             sb.Append("</span>");
             sb.Append("</div>");
-            sb.Append("<img class='test-image-for-" + _for + "'");
-            return sb.ToString();*/
-            return "";
+            return sb.ToString();
         }
 
         public string DropDownListBox(string _for, string value, IEnumerable<string> list)

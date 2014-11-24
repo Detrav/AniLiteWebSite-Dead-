@@ -33,3 +33,13 @@ BSFGTestImg = function(name)
 }
 
 $(".datepicker").datepicker({ changeMonth: true, changeYear: true, dateFormat: 'dd.mm.yy' });
+
+BSFGPlus = function (name)
+{
+    $("#" + name).val(parseInt($("#" + name).val(), 0) + 1)
+
+}
+BSFGMinus = function (name)
+{
+    $("#" + name).val(parseInt($("#" + name).val(), 0) - 1)
+}
