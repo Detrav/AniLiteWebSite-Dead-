@@ -171,12 +171,38 @@ namespace AniLiteWebSite.Core.HtmlHelper
 
         public string DropDownListBox(string _for, string value, IEnumerable<string> list)
         {
-            return "";
+            var sb = new StringBuilder();
+            sb.Append(String.Format("<select name =\"{0}\" class=\"form-control\" >",_for));
+            sb.Append("<option value=\"\">Нету</value>");
+            foreach(var it in list)
+            {
+                sb.Append(String.Format(
+                    "<option value=\"{0}\" {1}>{0}</options>",
+                    it,(it == value ? "selected":"")));
+            }
+            sb.Append("</select>");
+            return sb.ToString();
         }
 
-        public string SelectListBox(string _for, IEnumerable<string> value, IEnumerable<string> list)
+        public string SelectListBox(string _for, IEnumerable<string> _value, IEnumerable<string> list)
         {
-            return "";
+            try
+            {
+                List<string> value;
+                if (_value != null) { value = _value.ToList(); }
+                else { value = new List<string>(); }
+                var sb = new StringBuilder();
+                sb.Append(String.Format("<select name =\"{0}\" multiple class=\"form-control\" size=\"7\" >", _for));
+                foreach (var it in list)
+                {
+                    sb.Append(String.Format(
+                        "<option value=\"{0}\" {1}>{0}</options>",
+                        it, (value.IndexOf(it) >= 0 ? "selected" : "")));
+                }
+                sb.Append("</select>");
+                return sb.ToString();
+            }
+            catch {return "";}
         }
 
 

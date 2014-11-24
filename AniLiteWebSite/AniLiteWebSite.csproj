@@ -166,6 +166,7 @@
     <Compile Include="Core\HtmlHelper\BSFG.cs" />
     <Compile Include="Core\MyController.cs" />
     <Compile Include="Core\SConfiguration.cs" />
+    <Compile Include="Core\Statics\ForProduct.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -257,7 +258,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Core\Statics\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">
