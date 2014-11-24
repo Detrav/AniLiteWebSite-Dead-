@@ -26,7 +26,5 @@ namespace AniLiteWebSite.Core.DataBase
         ViewedProduct getViewedByProductAndUser(Product product, User user);
 
         ProductDetails GetProductDetailsById(int id);
-
-        ProductEdit GetProductEditById(int id);
     }
 }
