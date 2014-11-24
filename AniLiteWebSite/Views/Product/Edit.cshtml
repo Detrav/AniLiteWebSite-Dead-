@@ -33,6 +33,7 @@
     @BSFG.FormGroup(BSFG.Label("Director", "Режисёр"), BSFG.TextBox("Director", Model.Director, "Режисёр"))
     @BSFG.FormGroup(BSFG.Label("Author", "Автор"), BSFG.TextBox("Author", Model.Author, "Автор орегинала"))
     @BSFG.FormGroup(BSFG.Label("InRole", "В ролях"), BSFG.TextBoxList("InRole", Model.InRole, "Именя актёров или сею"), "InRole")
+    @BSFG.FormGroup(BSFG.Label("Submit", "Отправить"), BSFG.Submit("Submit", "Сохранить изменения", "btn btn-success"))
     @BSFG.End();
     
 }

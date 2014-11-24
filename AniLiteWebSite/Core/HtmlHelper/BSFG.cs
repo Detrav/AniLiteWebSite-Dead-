@@ -110,6 +110,13 @@ namespace AniLiteWebSite.Core.HtmlHelper
                 _for, _value, _onclick, _class);
         }
 
+        public string Submit(string _for, string _value = "Отправить", string _class = "btn")
+        {
+            return String.Format(
+                "<input type=\"submit\" id=\"{0}\" name=\"{0}\" class =\"{2}\" value = \"{1}\" >",
+                _for, _value, _class);
+        }
+
         public string ButtonOnMouseDown(string _for, string _value = "Кнопка", string _onclick = "", string _class = "btn")
         {
             return String.Format(
@@ -139,10 +146,12 @@ namespace AniLiteWebSite.Core.HtmlHelper
 
         public string CheckBox(string _for, bool _value = false)
         {
-            
-            return String.Format(
-                "<input class=\"form-control\" id=\"{0}\" name=\"{0}\"  type=\"checkbox\" {1}>",
-                _for, (_value ? "checked=\"checked\"" : ""));
+            var sb = new StringBuilder();
+            sb.Append(String.Format(
+                "<input class=\"form-control\" id=\"{0}\" name=\"{0}\"  type=\"checkbox\" {1} value=\"true\">",
+                _for, (_value ? "checked=\"checked\"" : "")));
+            sb.Append("<input name=\"" + _for + "\" type=\"hidden\" value=\"false\">");
+            return sb.ToString();
         }
 
         public string DateBox(string _for, DateTime _value)
