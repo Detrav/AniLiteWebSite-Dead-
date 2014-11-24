@@ -172,7 +172,6 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ProductDetails.cs" />
-    <Compile Include="Models\ProductEdit.cs" />
     <Compile Include="Models\ProductPlusViewed.cs" />
     <Compile Include="Models\ProductSimple.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
