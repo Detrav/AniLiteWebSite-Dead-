@@ -16,9 +16,25 @@
     <!--Название-->
     @BSFG.FormGroup(BSFG.Label("Name", "Название"), BSFG.TextBox("Name", Model.Name, "Отображаемое название"))
     @BSFG.FormGroup(BSFG.Label("Description", "Описание"), BSFG.TextArea("Description",4, Model.Description, "Короткое описание"))
-    @BSFG.FormGroup(BSFG.Label("Names","Другие названия"), BSFG.TextBoxList("Names",Model.Names.ToArray(),"Названия на других языках"))
+    @BSFG.FormGroup(BSFG.Label("Names", "Другие названия"), BSFG.TextBoxList("Names", Model.Names, "Названия на других языках"), "Names")
+    @BSFG.FormGroup(BSFG.Label("AvatarURI", "Ссылка на постер"), BSFG.ImageArea("AvatarURI", Model.AvatarURI))
+    @BSFG.FormGroup(BSFG.Label("Confirmed", "Утверждено?"), BSFG.CheckBox("Confirmed", Model.Confirmed))
+    @BSFG.FormGroup(BSFG.Label("Begin", "Начало трансляции"), BSFG.DateBox("Begin", Model.Begin))
+    @BSFG.FormGroup(BSFG.Label("End", "Конец трансляции"), BSFG.DateBox("End", Model.End))
+    @BSFG.FormGroup(BSFG.Label("Ended", "Закончилось?"), BSFG.CheckBox("Ended", Model.Ended))
+    @BSFG.FormGroup(BSFG.Label("NumOfEpisode", "Количество эпизодов"), BSFG.NumericalBox("NumOfEpisode", Model.NumOfEpisode))
+    @BSFG.FormGroup(BSFG.Label("FromURI", "Источник информации"), BSFG.TextBox("FromURI", Model.FromURI, "Ссылка на источник информации"))
+    @BSFG.FormGroup(BSFG.Label("PosterFromURI", "Постер источника информации"), BSFG.ImageArea("PosterFromURI", Model.PosterFromURI))
+    @BSFG.FormGroup(BSFG.Label("Country", "Страна"), BSFG.DropDownListBox("Country", Model.Country,new List<string>()))
+    @BSFG.FormGroup(BSFG.Label("Genre", "Жанр"), BSFG.SelectListBox("Genre", Model.Genre, new List<string>()))
+    @BSFG.FormGroup(BSFG.Label("Type", "Тип"), BSFG.DropDownListBox("Type", Model.Type, new List<string>()))
+    @BSFG.FormGroup(BSFG.Label("View", "Вид"), BSFG.DropDownListBox("View", Model.View, new List<string>()))
+    @BSFG.FormGroup(BSFG.Label("Director", "Режисёр"), BSFG.TextBox("Director", Model.Director, "Режисёр"))
+    @BSFG.FormGroup(BSFG.Label("Author", "Автор"), BSFG.TextBox("Author", Model.Author, "Автор орегинала"))
+    @BSFG.FormGroup(BSFG.Label("InRole", "В ролях"), BSFG.TextBoxList("InRole", Model.InRole, "Именя актёров или сею"), "InRole")
     @BSFG.End();
     
 }
 @section FooterScript{
+    <script src="~/Content/Scripts/edit.js"></script>
 }

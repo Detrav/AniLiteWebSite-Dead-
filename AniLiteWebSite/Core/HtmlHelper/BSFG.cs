@@ -49,6 +49,22 @@ namespace AniLiteWebSite.Core.HtmlHelper
             }
         }
 
+        public MvcHtmlString FormGroup(string label, string content,string with_js)
+        {
+            if (label == null)
+            {
+                return new MvcHtmlString(String.Format(
+                    "<div class=\"form-group js-for-{5}\"><div class=\"col-sm-offset-{1} col-md-offset-{2} col-sm-{3} col-md-{4}\">{0}</div></div>",
+                    content, sm, md, 12 - sm, 12 - md,with_js));
+            }
+            else
+            {
+                return new MvcHtmlString(String.Format(
+                    "<div class=\"form-group js-for-{4}\">{0}<div class=\"col-sm-{2} col-md-{3}\">{1}</div></div>",
+                    label, content, 12 - sm, 12 - md,with_js));
+            }
+        }
+
         public string Label(string _for, string _value)
         {
             return String.Format(
@@ -63,29 +79,34 @@ namespace AniLiteWebSite.Core.HtmlHelper
             _for, _placeholder, _value);
         }
 
-        public string TextBoxList(string _for, string[] _value = null, string _placeholder = "")
+        public string TextBoxList(string _for, IEnumerable<string> __value = null, string _placeholder = "")
         {
             var sb = new StringBuilder();
-            if (_value != null)
+            try
             {
-                for(int i = 0;i<_value.Count();i++)
+                var _value = __value.ToArray();
+                if (_value != null)
                 {
-                sb.Append("<div class=\"input-group\">");
-                sb.Append(TextBox(String.Format("{0}[{1}]",_for,i),_value[i],_placeholder));
-                sb.Append("<span class=\"input-group-btn\">");
-                sb.Append(Button("Delete" + _for, "Удалить", "", "btn btn-danger"));
-                sb.Append("</span>");
-                sb.Append("</div>");
+                    for (int i = 0; i < _value.Count(); i++)
+                    {
+                        sb.Append("<div class=\"input-group\">");
+                        sb.Append(TextBox(String.Format("{0}[{1}]", _for, i), _value[i], _placeholder));
+                        sb.Append("<span class=\"input-group-btn\">");
+                        sb.Append(Button("Delete" + _for, "Удалить", "BSFGDelete('" + _for + "','" + i.ToString() + "')", "btn btn-danger"));
+                        sb.Append("</span>");
+                        sb.Append("</div>");
+                    }
                 }
             }
-            sb.Append(Button("Add"+_for,"Добавить","","btn btn-success"));
+            catch { }
+            sb.Append(Button("Add" + _for, "Добавить", "BSFGAdd('" + _for + "','" + _placeholder + "')", "btn btn-success"));
             return sb.ToString();
         }
 
         public string Button(string _for,string _value ="Кнопка",string _onclick ="", string _class ="btn")
         {
             return String.Format(
-                "<input type=\"button\" name=\"{0}\" value = \"{1}\" onclick=\"{2}\" class =\"{3}\" >",
+                "<a id=\"{0}\" name=\"{0}\" onclick=\"{2}\" class =\"{3}\" >{1}</a>",
                 _for, _value, _onclick, _class);
         }
 
@@ -95,6 +116,63 @@ namespace AniLiteWebSite.Core.HtmlHelper
                 "<textarea class=\"form-control\" name=\"{0}\" rows = \"{1}\" placeholder=\"{2}\">{3}</textarea>",
                 _for,row,_placeholder,_value);
         }
+
+        public string ImageArea(string _for,string _value ="",string _placeholder = "Ссылка на картинку")
+        {
+            var sb = new StringBuilder();
+            sb.Append("<div class=\"input-group\">");
+            sb.Append(TextBox(_for, _value, _placeholder));
+            sb.Append("<span class=\"input-group-btn\">");
+            sb.Append(Button("Test" + _for, "Проверить", "BSFGTestImg('" + _for + "')", "btn btn-default"));
+            sb.Append("</span>");
+            sb.Append("</div>");
+            sb.Append("<img class='test-image-for-" + _for + "'>");
+            return sb.ToString();
+        }
+
+        public string CheckBox(string _for, bool _value = false)
+        {
+            
+            return String.Format(
+                "<input class=\"form-control\" id=\"{0}\" name=\"{0}\"  type=\"checkbox\" {1}>",
+                _for, (_value ? "checked=\"checked\"" : ""));
+        }
+
+        public string DateBox(string _for, DateTime _value)
+        {
+           var sb = new StringBuilder();
+            sb.Append("<div class=\"input-group\">");
+            sb.Append(String.Format(
+                 "<input class=\"form-control datepicker\" id=\"{0}\" name=\"{0}\" type=\"text\" value=\"{1}\">",
+            _for, _value.ToShortDateString()));
+            sb.Append("</div>");
+            return sb.ToString();
+        }
+        
+        public string NumericalBox(string _for, int _value)
+        {
+          /*  var sb = new StringBuilder();
+            sb.Append("<div class=\"input-group\">");
+            sb.Append(TextBox(_for, _value, _placeholder));
+            sb.Append("<span class=\"input-group-btn\">");
+            sb.Append(Button("Test" + _for, "Проверить", "BSFGTestImg('" + _for + "')", "btn"));
+            sb.Append("</span>");
+            sb.Append("</div>");
+            sb.Append("<img class='test-image-for-" + _for + "'");
+            return sb.ToString();*/
+            return "";
+        }
+
+        public string DropDownListBox(string _for, string value, IEnumerable<string> list)
+        {
+            return "";
+        }
+
+        public string SelectListBox(string _for, IEnumerable<string> value, IEnumerable<string> list)
+        {
+            return "";
+        }
+
 
         public MvcHtmlString End()
         {

@@ -12,6 +12,7 @@ namespace AniLiteWebSite.Migrations
         {
             AutomaticMigrationsEnabled = true;
             AutomaticMigrationDataLossAllowed = true;
+            //SetSqlGenerator("System.Data.SQLite.EF6",System.Data.SQLite.);
         }
 
         protected override void Seed(AniLiteWebSite.Core.DataBase.AniLiteDBContext context)
