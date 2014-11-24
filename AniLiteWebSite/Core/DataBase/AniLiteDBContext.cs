@@ -33,5 +33,7 @@ namespace AniLiteWebSite.Core.DataBase
         public DbSet<ViewedProduct> ProductVieweds { get; set; }
         //История для изменений
         public DbSet<Story> Histrory { get; set; }
+
+        public DbSet<MetaProduct> MetaProducts { get; set; }
     }
 }

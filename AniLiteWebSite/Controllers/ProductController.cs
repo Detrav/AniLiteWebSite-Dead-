@@ -64,7 +64,8 @@ namespace AniLiteWebSite.Controllers
         [HttpPost]
         public ActionResult Edit(ProductDetails product)
         {
-            return View(product);
+            sqlRepository.UpdateProductByDetails(product);
+            return RedirectToAction("Details", "Product", new { Id = product.Id });
         }
 
     }
