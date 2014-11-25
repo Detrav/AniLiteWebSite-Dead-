@@ -151,6 +151,7 @@
     <Compile Include="Controllers\HelperController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Core\DataBase\MySQLRepository\View.cs" />
     <Compile Include="Core\HtmlHelper\BootstrapHtmlHelper.cs" />
     <Compile Include="Core\DataBase\AniLiteDBContext.cs" />
     <Compile Include="Core\DataBase\ISQLRepository.cs" />
@@ -174,6 +175,7 @@
     <Compile Include="Models\ProductDetails.cs" />
     <Compile Include="Models\ProductPlusViewed.cs" />
     <Compile Include="Models\ProductSimple.cs" />
+    <Compile Include="Models\ViewDetails.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -254,6 +256,7 @@
     <Content Include="Views\Product\Index.cshtml" />
     <Content Include="Views\Product\Details.cshtml" />
     <Content Include="Views\Product\Edit.cshtml" />
+    <Content Include="Views\Helper\ShortView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

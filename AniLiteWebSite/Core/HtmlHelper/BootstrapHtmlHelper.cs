@@ -267,7 +267,7 @@ namespace AniLiteWebSite.Core.HtmlHelper
                 case TypeOfMetaProduct.End:
                     sb.AppendLine(InputExtensions
                         .TextBox(html, String
-                        .Format("MetaData[{0}].DateTime", num), meta.DateTime.ToShortDateString(), new { @class = "form-control" }).ToHtmlString());
+                        .Format("MetaData[{0}].DateTime", num), meta.Date.ToShortDateString(), new { @class = "form-control" }).ToHtmlString());
                     break;
                 case TypeOfMetaProduct.Ended:
                     sb.AppendLine(InputExtensions

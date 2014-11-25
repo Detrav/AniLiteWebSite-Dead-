@@ -62,7 +62,7 @@ namespace AniLiteWebSite.Core.DataBase
                     {
                         case TypeOfMetaProduct.Name: names.Add(meta.String); break;
                         case TypeOfMetaProduct.NumberOfEpisode: ps.NumOfEpisode = meta.Int; break;
-                        case TypeOfMetaProduct.Begin: ps.Year = meta.DateTime.Year; break;
+                        case TypeOfMetaProduct.Begin: ps.Year = meta.Date.Year; break;
                         case TypeOfMetaProduct.PosterFromURI: ps.PosterFromURI = meta.String; break;
                         case TypeOfMetaProduct.FromURI: ps.FromURI = meta.String; break;
 
@@ -101,10 +101,10 @@ namespace AniLiteWebSite.Core.DataBase
                         names.Add(meta.String);
                         break;
                     case TypeOfMetaProduct.Begin:
-                        pd.Begin = meta.DateTime;
+                        pd.Begin = meta.Date;
                         break;
                     case TypeOfMetaProduct.End:
-                        pd.End = meta.DateTime;
+                        pd.End = meta.Date;
                         break;
                     case TypeOfMetaProduct.Ended:
                         pd.Ended = meta.Bool;
@@ -161,8 +161,8 @@ namespace AniLiteWebSite.Core.DataBase
             p.AvatarURI = pd.AvatarURI;
             List<MetaProduct> mp = new List<MetaProduct>();
             if (pd.Names != null) { foreach (var name in pd.Names) { if (name != "") { mp.Add(new MetaProduct { Type = TypeOfMetaProduct.Name, String = name }); } } }
-            if (pd.Begin > DateTime.Now.AddYears(200)) mp.Add(new MetaProduct { Type = TypeOfMetaProduct.Begin, DateTime = pd.Begin });
-            if (pd.End > DateTime.Now.AddYears(200)) mp.Add(new MetaProduct { Type = TypeOfMetaProduct.End, DateTime = pd.End });
+            if (pd.Begin > DateTime.Now.AddYears(-200)) mp.Add(new MetaProduct { Type = TypeOfMetaProduct.Begin, Date = pd.Begin });
+            if (pd.End > DateTime.Now.AddYears(-200)) mp.Add(new MetaProduct { Type = TypeOfMetaProduct.End, Date = pd.End });
             if (pd.Ended) mp.Add(new MetaProduct { Type = TypeOfMetaProduct.Ended, Bool = pd.Ended });
             if (pd.NumOfEpisode > 0) mp.Add(new MetaProduct { Type = TypeOfMetaProduct.NumberOfEpisode, Int = pd.NumOfEpisode });
             if (pd.FromURI != null) if (pd.FromURI != "") mp.Add(new MetaProduct { Type = TypeOfMetaProduct.FromURI, String = pd.FromURI });

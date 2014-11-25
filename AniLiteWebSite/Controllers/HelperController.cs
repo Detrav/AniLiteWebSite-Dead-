@@ -1,5 +1,6 @@
 ﻿using AniLiteWebSite.Core;
 using AniLiteWebSite.Core.DataBase.Model;
+using AniLiteWebSite.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -65,6 +66,32 @@ namespace AniLiteWebSite.Controllers
             {
                 return RedirectToAction("Authorization", "Error");
             }
+        }
+
+        public ActionResult ViewAdd(int Id)
+        {
+            sqlRepository.AddView(Id, User.Id);
+            return Redirect(Request.UrlReferrer.ToString());
+        }
+
+        public ActionResult ViewRemove(int Id)
+        {
+            sqlRepository.RemoveView(Id, User.Id);
+            return Redirect(Request.UrlReferrer.ToString());
+        }
+
+        public ActionResult ViewUpdate(int Id,int Value)
+        {
+            sqlRepository.UpdateView(Id, User.Id, Value);
+            return Redirect(Request.UrlReferrer.ToString());
+        }
+
+        public ActionResult ShortView(int Id)
+        {
+            var view = sqlRepository.GetViewDetails(Id, User.Id);
+            if (view == null) return View();
+            view.Role = UserRole;
+            return View(view);
         }
     }
 }

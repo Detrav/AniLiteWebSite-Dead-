@@ -27,5 +27,12 @@ namespace AniLiteWebSite.Core.DataBase
 
         ProductDetails GetProductDetailsById(int id);
         bool UpdateProductByDetails(ProductDetails pd);
+
+        bool AddView(int ProductId, int UserId);
+        bool RemoveView(int ViewId, int UserId);
+        bool UpdateView(int ViewId, int UserId, int Value);
+        int ProductNumEpisode(Product product);
+
+        ViewDetails GetViewDetails(int ProductId, int UserId);
     }
 }

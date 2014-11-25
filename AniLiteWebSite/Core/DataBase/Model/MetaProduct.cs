@@ -18,7 +18,7 @@ namespace AniLiteWebSite.Core.DataBase.Model
 
         public virtual Product Product { get; set; }
         [NotMapped]
-        public DateTime DateTime
+        public DateTime Date
         {
             get
             {
@@ -27,7 +27,7 @@ namespace AniLiteWebSite.Core.DataBase.Model
             }
             set
             {
-                Data = value.ToString();
+                Data = value.ToShortDateString();
             }
         }
         [NotMapped]

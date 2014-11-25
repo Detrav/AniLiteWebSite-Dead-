@@ -15,7 +15,8 @@ namespace AniLiteWebSite.Core.DataBase.Model
         [Required]
         public int Current { get; set; }
         public bool End { get; set; }
-
+        [MaxLength(500)]
+        public string Reminder { get; set; }
         // Связи
 
         public virtual User User { get; set; }
