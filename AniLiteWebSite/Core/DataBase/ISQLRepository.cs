@@ -34,5 +34,7 @@ namespace AniLiteWebSite.Core.DataBase
         int ProductNumEpisode(Product product);
 
         ViewDetails GetViewDetails(int ProductId, int UserId);
+
+        bool UpdateViewStar(int ViewId, int UserId);
     }
 }

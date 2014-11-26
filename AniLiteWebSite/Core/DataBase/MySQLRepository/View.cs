@@ -21,7 +21,7 @@ namespace AniLiteWebSite.Core.DataBase
             {
                 return false;
             }
-            ViewedProduct vp = new ViewedProduct { Product = product, User = user, Current = 0, End = false, Reminder = "" };
+            ViewedProduct vp = new ViewedProduct { Product = product, User = user, Current = 0, End = false, Reminder = "", Condition="", Star = false };
             Db.ProductVieweds.Add(vp);
             Db.SaveChanges();
             return true;
@@ -44,6 +44,15 @@ namespace AniLiteWebSite.Core.DataBase
             if (viewed.Current < 0) viewed.Current = 0;
             var num = ProductNumEpisode(viewed.Product);
             if (viewed.Current > num) viewed.Current = num;
+            Db.SaveChanges();
+            return true;
+        }
+        public bool UpdateViewStar(int ViewId, int UserId)
+        {
+            var viewed = Db.ProductVieweds.Find(ViewId);
+            if (viewed == null) return false;
+            if (viewed.User.Id != UserId) return false;
+            viewed.Star = !viewed.Star;
             Db.SaveChanges();
             return true;
         }
@@ -76,6 +85,8 @@ namespace AniLiteWebSite.Core.DataBase
             vd.FromURI = null;
             vd.PosterFromURI = null;
             vd.Reminder = view.Reminder;
+            vd.Condition = view.Condition;
+            vd.Star = view.Star;
 
             foreach(var it in view.Product.MetaData)
             {

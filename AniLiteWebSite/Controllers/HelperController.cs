@@ -86,6 +86,12 @@ namespace AniLiteWebSite.Controllers
             return Redirect(Request.UrlReferrer.ToString());
         }
 
+        public ActionResult ViewSetStar(int Id)
+        {
+            sqlRepository.UpdateViewStar(Id, User.Id);
+            return Redirect(Request.UrlReferrer.ToString());
+        }
+
         public ActionResult ShortView(int Id)
         {
             var view = sqlRepository.GetViewDetails(Id, User.Id);

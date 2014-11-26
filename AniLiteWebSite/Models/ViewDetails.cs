@@ -20,5 +20,8 @@ namespace AniLiteWebSite.Models
         public string FromURI { get; set; }
         public string PosterFromURI { get; set; }
         public string Reminder { get; set; }
+
+        public string Condition { get; set; }
+        public bool Star { get; set; }
     }
 }

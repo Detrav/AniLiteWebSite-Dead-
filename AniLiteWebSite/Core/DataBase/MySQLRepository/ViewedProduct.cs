@@ -16,5 +16,7 @@ namespace AniLiteWebSite.Core.DataBase
             if (query.Count() == 0) return null;
             return query.First();
         }
+
+        
     }
 }
