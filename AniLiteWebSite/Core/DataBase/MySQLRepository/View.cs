@@ -74,9 +74,11 @@ namespace AniLiteWebSite.Core.DataBase
             {
                 view = it;
             }
-            if (view == null) return vd;
-            vd.ViewId = view.Id;
-            vd.CurrentEpisode = view.Current;
+
+            if (view != null) {
+                vd.ViewId = view.Id;
+                vd.CurrentEpisode = view.Current;
+            }
             vd.MaxEpisode = 0;
             vd.AvatarURI = view.Product.AvatarURI;
             vd.Year = 0;
@@ -84,13 +86,16 @@ namespace AniLiteWebSite.Core.DataBase
             vd.Names.Add(view.Product.Name);
             vd.FromURI = null;
             vd.PosterFromURI = null;
-            vd.Reminder = view.Reminder;
-            vd.Condition = view.Condition;
-            vd.Star = view.Star;
 
-            foreach(var it in view.Product.MetaData)
+            if (view != null) {
+                vd.Reminder = view.Reminder;
+                vd.Condition = view.Condition;
+                vd.Star = view.Star;
+            }
+
+            foreach (var it in view.Product.MetaData)
             {
-                switch(it.Type)
+                switch (it.Type)
                 {
                     case TypeOfMetaProduct.NumberOfEpisode:
                         vd.MaxEpisode = it.Int;

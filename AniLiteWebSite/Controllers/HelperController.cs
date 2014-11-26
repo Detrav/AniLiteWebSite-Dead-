@@ -99,5 +99,13 @@ namespace AniLiteWebSite.Controllers
             view.Role = UserRole;
             return View(view);
         }
+
+        public ActionResult LongView(int Id)
+        {
+            var view = sqlRepository.GetViewDetails(Id, User.Id);
+            if (view == null) return View();
+            view.Role = UserRole;
+            return View(view);
+        }
     }
 }

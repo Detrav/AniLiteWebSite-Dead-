@@ -14,9 +14,9 @@ namespace AniLiteWebSite.Controllers
         //
         // GET: /Product/
 
-        public ActionResult Index(int from = 0,int size = 10)
+        public ActionResult Index(int Id = 0,int size = 10)
         {
-            IEnumerable<ProductSimple> products = sqlRepository.GetProductSimples(from, size,User);
+            IEnumerable<ProductSimple> products = sqlRepository.GetProductSimples(Id, size, User);
             return View(products);
         }
 

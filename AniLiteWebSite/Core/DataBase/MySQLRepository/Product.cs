@@ -42,33 +42,6 @@ namespace AniLiteWebSite.Core.DataBase
             {
                 ProductSimple ps = new ProductSimple();
                 ps.id = p.Id;
-                ps.AvatarURI64 = p.AvatarURI;
-                var names = new List<string>();
-                names.Add(p.Name);
-                if (usr != null)
-                {
-                    var query = from u in usr.Viewed where u.Product == p select u;
-                    if (query.Count() > 0)
-                    {
-                        var v = query.First();
-                        ps.Viewed = true;
-                        ps.ViewedEnd = v.End;
-                        ps.NumCurrent = v.Current;
-                    }
-                }
-                foreach(var meta in p.MetaData)
-                {
-                    switch(meta.Type)
-                    {
-                        case TypeOfMetaProduct.Name: names.Add(meta.String); break;
-                        case TypeOfMetaProduct.NumberOfEpisode: ps.NumOfEpisode = meta.Int; break;
-                        case TypeOfMetaProduct.Begin: ps.Year = meta.Date.Year; break;
-                        case TypeOfMetaProduct.PosterFromURI: ps.PosterFromURI = meta.String; break;
-                        case TypeOfMetaProduct.FromURI: ps.FromURI = meta.String; break;
-
-                    }
-                }
-                ps.Names = names;
                 productsimples.Add(ps);
             }
 
